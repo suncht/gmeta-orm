@@ -2,31 +2,32 @@ package models
 
 import "time"
 
+// SysColumn 列定义
 type SysColumn struct {
-	ID                 uint8     `gorm:"primary_key" json:" - "` //主键
-	TableId            uint8     `json:"table_id"`               //表ID
-	TableName          string    `json:"table_name"`             //表名
-	ColumnName         string    `json:"column_name"`            //列名
-	ColumnComment      string    `json:"column_comment"`         //列注释
-	ColumnDefault      string    `json:"column_default"`         //默认值
-	ColumnType         string    `json:"column_type"`            //列类型
-	PrimaryKey         string    `json:"primary_key"`            //是否主键 1-是 2-否
-	ColumnProperty     uint8     `json:"column_property"`        //列属性，1-固定字段，2-扩展字段
-	ColumnLength       int       `json:"column_length"`          //列长度
-	ColumnPrecision    int       `json:"column_precision"`       //列精度
-	Nullable           uint8     `json:"nullable"`               //是否为空
-	RefTableId         uint8     `json:"ref_table_id"`           //引用的表ID
-	RefTableName       string    `json:"ref_table_name"`         //引用的表名
-	RefColumnId        uint8     `json:"ref_column_id"`          //引用表的字段ID
-	RefColumnName      string    `json:"ref_column_name"`        //引用表的字段名
-	RefColumnValueId   string    `json:"ref_column_value_id"`    //引用表的值的字段Id，多个
-	RefColumnValueName string    `json:"ref_column_value_name"`  //引用表的值的字段名，多个
-	RefDictCategory    string    `json:"ref_dict_category"`      //引用字典的类型
-	RefDictCode        string    `json:"ref_dict_code"`          //引用字典的编码
-	CreateTime         time.Time `json:"create_time"`            //创建时间
-	CreateUser         string    `json:"create_user"`            //创建人
-	UpdateTime         time.Time `json:"update_time"`            //更新时间
-	UpdateUser         string    `json:"update_user"`            //更新人
-	Ts                 time.Time `json:"ts"`                     //时间戳
-	Yn                 uint8     `json:"yn"`                     //是否有效， 1-正常  0-删除
+	ID                 int64     `gorm:"primary_key;column:id;type:bigint(20);not null"` // 主键
+	TableID            int64     `gorm:"column:table_id;type:bigint(20)"`                // 表ID
+	TableName          string    `gorm:"column:table_name;type:varchar(50)"`             // 表名
+	ColumnName         string    `gorm:"column:column_name;type:varchar(255)"`           // 列名
+	ColumnComment      string    `gorm:"column:column_comment;type:varchar(255)"`        // 列注释
+	ColumnDefault      string    `gorm:"column:column_default;type:varchar(255)"`        // 默认值
+	ColumnType         string    `gorm:"column:column_type;type:varchar(255)"`           // 列类型
+	PrimaryKey         string    `gorm:"column:primary_key;type:varchar(255)"`           // 是否主键 1-是 2-否
+	ColumnProperty     int8      `gorm:"column:column_property;type:tinyint(1)"`         // 列属性，1-固定字段，2-扩展字段
+	ColumnLength       int       `gorm:"column:column_length;type:int(11)"`              // 列长度
+	ColumnPrecision    int       `gorm:"column:column_precision;type:int(11)"`           // 列精度
+	Nullable           int8      `gorm:"column:nullable;type:tinyint(1)"`                // 是否为空
+	RefTableID         int64     `gorm:"column:ref_table_id;type:bigint(20)"`            // 引用的表ID
+	RefTableName       string    `gorm:"column:ref_table_name;type:varchar(100)"`        // 引用的表名
+	RefColumnID        int64     `gorm:"column:ref_column_id;type:bigint(20)"`           // 引用表的字段ID
+	RefColumnName      string    `gorm:"column:ref_column_name;type:varchar(50)"`        // 引用表的字段名
+	RefColumnValueID   string    `gorm:"column:ref_column_value_id;type:varchar(50)"`    // 引用表的值的字段Id，多个
+	RefColumnValueName string    `gorm:"column:ref_column_value_name;type:varchar(50)"`  // 引用表的值的字段名，多个
+	RefDictCategory    string    `gorm:"column:ref_dict_category;type:varchar(50)"`      // 引用字典的类型
+	RefDictCode        string    `gorm:"column:ref_dict_code;type:varchar(50)"`          // 引用字典的编码
+	CreateTime         time.Time `gorm:"column:create_time;type:datetime"`               // 创建时间
+	CreateUser         string    `gorm:"column:create_user;type:varchar(50)"`            // 创建人
+	UpdateTime         time.Time `gorm:"column:update_time;type:datetime"`               // 更新时间
+	UpdateUser         string    `gorm:"column:update_user;type:varchar(50)"`            // 更新人
+	Ts                 time.Time `gorm:"column:ts;type:timestamp"`                       // 时间戳
+	Yn                 int8      `gorm:"column:yn;type:tinyint(1)"`                      // 是否有效， 1-正常  0-删除
 }

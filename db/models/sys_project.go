@@ -2,14 +2,15 @@ package models
 
 import "time"
 
+// SysProject 项目
 type SysProject struct {
-	ID          uint64    `gorm:"primary_key" json:" - "` //主键
-	ProjectName string    `json:"project_name"`           //项目名
-	ProjectDesc string    `json:"project_desc"`           //项目描述
-	CreateTime  time.Time `json:"create_time"`            //创建时间
-	CreateUser  string    `json:"create_user"`            //创建人
-	UpdateTime  time.Time `json:"update_time"`            //更新时间
-	UpdateUser  string    `json:"update_user"`            //更新人
-	Ts          time.Time `json:"ts"`                     //时间戳
-	Yn          uint8     `json:"yn"`                     //是否有效， 1-正常  0-删除
+	ID          int64     `gorm:"primary_key;column:id;type:bigint(20);not null"` // 主键
+	ProjectName string    `gorm:"column:project_name;type:varchar(50)"`           // 项目名
+	ProjectDesc string    `gorm:"column:project_desc;type:varchar(100)"`          // 项目描述
+	CreateTime  time.Time `gorm:"column:create_time;type:datetime"`               // 创建时间
+	CreateUser  string    `gorm:"column:create_user;type:varchar(50)"`            // 创建人
+	UpdateTime  time.Time `gorm:"column:update_time;type:datetime"`               // 更新时间
+	UpdateUser  string    `gorm:"column:update_user;type:varchar(50)"`            // 更新人
+	Ts          time.Time `gorm:"column:ts;type:timestamp"`                       // 时间戳
+	Yn          int8      `gorm:"column:yn;type:tinyint(1)"`                      // 是否有效， 1-正常  0-删除
 }
